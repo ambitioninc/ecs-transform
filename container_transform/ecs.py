@@ -293,3 +293,9 @@ class ECSTransformer(BaseTransformer):
             data['logDriver'] = data.get('driver')
             del data['driver']
         return logging
+
+    def ingest_privileged(self, privileged):
+        return privileged
+
+    def emit_privileged(self, privileged):
+        return privileged
