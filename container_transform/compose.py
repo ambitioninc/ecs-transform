@@ -354,3 +354,9 @@ class ComposeTransformer(BaseTransformer):
 
     def emit_privileged(self, privileged):
         return privileged
+
+    def emit_memory_reserve(self, memory_reserve):
+        return self.emit_memory(memory_reserve)
+
+    def ingest_memory_reserve(self, memory_reserve):
+        return self.ingest_memory(memory_reserve)

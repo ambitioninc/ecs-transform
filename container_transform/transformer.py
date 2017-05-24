@@ -8,6 +8,7 @@ SCHEMA = {
     'name': str,
     'cpu': int,  # out of 1024
     'memory': int,  # in bytes
+    'mem_reservation': int,  # in bytes
     'links': list,  # This is universal across formats
     'logging': {
         # See compose options
@@ -270,4 +271,12 @@ class BaseTransformer(object, metaclass=ABCMeta):
 
     @abstractmethod
     def emit_volumes(self, volumes):
+        raise NotImplementedError
+
+    @abstractmethod
+    def emit_memory_reserve(self, memory_reserve):
+        raise NotImplementedError
+
+    @abstractmethod
+    def ingest_memory_reserve(self, memory_reserve):
         raise NotImplementedError
