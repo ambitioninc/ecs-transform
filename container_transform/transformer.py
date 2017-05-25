@@ -217,6 +217,12 @@ class BaseTransformer(object, metaclass=ABCMeta):
     def emit_fetch(self, fetch):
         return fetch
 
+    def emit_memory_reserve(self, memory_reserve):
+        raise memory_reserve
+
+    def ingest_memory_reserve(self, memory_reserve):
+        raise memory_reserve
+
     @abstractmethod
     def ingest_port_mappings(self, port_mappings):
         raise NotImplementedError
@@ -273,10 +279,3 @@ class BaseTransformer(object, metaclass=ABCMeta):
     def emit_volumes(self, volumes):
         raise NotImplementedError
 
-    @abstractmethod
-    def emit_memory_reserve(self, memory_reserve):
-        raise NotImplementedError
-
-    @abstractmethod
-    def ingest_memory_reserve(self, memory_reserve):
-        raise NotImplementedError
