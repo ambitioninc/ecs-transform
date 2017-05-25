@@ -218,10 +218,10 @@ class BaseTransformer(object, metaclass=ABCMeta):
         return fetch
 
     def emit_memory_reserve(self, memory_reserve):
-        raise memory_reserve
+        return memory_reserve
 
     def ingest_memory_reserve(self, memory_reserve):
-        raise memory_reserve
+        return memory_reserve
 
     @abstractmethod
     def ingest_port_mappings(self, port_mappings):
