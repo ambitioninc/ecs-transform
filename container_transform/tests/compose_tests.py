@@ -144,7 +144,7 @@ class ComposeTransformerTests(TestCase):
         }
         self.assertEqual(
             self.transformer.emit_environment(environment),
-            environment
+            environment_exp
         )
 
     def test_ingest_command_list(self):
