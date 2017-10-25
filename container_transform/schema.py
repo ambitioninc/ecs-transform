@@ -731,6 +731,16 @@ ARG_MAP = OrderedDict({
             'required': False,
         },
     },
+    'ulimits': {
+        TransformationTypes.ECS.value:{
+            'name': "ulimits",
+            'required': False,
+        },
+        TransformationTypes.COMPOSE.value: {
+            'name': "ulimits",
+            'required': False
+        }
+    }
     # TODO create an entry for forcePullImage
     # TODO create an entry for healthChecks
     # TODO create an entry for replicas/instances

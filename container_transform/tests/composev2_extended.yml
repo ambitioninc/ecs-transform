@@ -14,6 +14,12 @@ services:
       options:
         tag: web
         gelf-address: "udp://127.0.0.1:12900"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
+
   redis:
     image: redis
     ports:

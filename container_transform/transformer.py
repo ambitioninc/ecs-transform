@@ -32,6 +32,7 @@ SCHEMA = {
     'env-file': list,
     'pid': str,
     'fetch': [dict],
+    'ulimit': dict
 }
 
 
@@ -270,4 +271,12 @@ class BaseTransformer(object, metaclass=ABCMeta):
 
     @abstractmethod
     def emit_volumes(self, volumes):
+        raise NotImplementedError
+
+    @abstractmethod
+    def ingest_ulimits(self, ulimits):
+        raise NotImplementedError
+
+    @abstractmethod
+    def emit_ulimits(self, ulimits):
         raise NotImplementedError

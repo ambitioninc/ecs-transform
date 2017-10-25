@@ -272,7 +272,7 @@ class ECSTransformer(BaseTransformer):
             for volume
             in volumes
             if self._build_mountpoint(volume) is not None
-        ]
+            ]
 
     def ingest_labels(self, labels):
         return labels
@@ -293,3 +293,21 @@ class ECSTransformer(BaseTransformer):
             data['logDriver'] = data.get('driver')
             del data['driver']
         return logging
+
+    def ingest_ulimits(self, ulimits):
+        return ulimits
+
+    def emit_ulimits(self, ulimits):
+        output = []
+        for ulimit_name, ulimit_value in ulimits.items():
+            if type(ulimit_value) is dict:
+                output.append({"name": ulimit_name,
+                               "softLimit": ulimit_value.get('soft'),
+                               "hardLimit": ulimit_value.get('hard')
+                               })
+            else:
+                output.append({"name": ulimit_name,
+                               "softLimit": ulimit_value,
+                               "hardLimit": ulimit_value
+                               })
+        return output
