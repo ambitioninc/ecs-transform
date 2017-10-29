@@ -293,3 +293,9 @@ class ECSTransformer(BaseTransformer):
             data['logDriver'] = data.get('driver')
             del data['driver']
         return logging
+
+    def emit_memory_reserve(self, memory_reserve):
+        return self.emit_memory(memory_reserve)
+
+    def ingest_memory_reserve(self, memory_reserve):
+        return self.ingest_memory(memory_reserve)

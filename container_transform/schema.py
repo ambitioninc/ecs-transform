@@ -113,7 +113,7 @@ ARG_MAP = OrderedDict({
     'memory': {
         TransformationTypes.ECS.value: {
             'name': 'memory',
-            'required': True
+            'required': False
         },
         TransformationTypes.COMPOSE.value: {
             'name': 'mem_limit',
@@ -731,6 +731,33 @@ ARG_MAP = OrderedDict({
             'required': False,
         },
     },
+    'memory_reserve': {
+        TransformationTypes.ECS.value: {
+            'name': "memoryReservation",
+            'required': False
+        },
+        TransformationTypes.COMPOSE.value: {
+            'name': "mem_reservation",
+            'required': False,
+        },
+        TransformationTypes.SYSTEMD.value: {
+            'name': None,
+            'required': False,
+        },
+        TransformationTypes.MARATHON.value: {
+            'name': 'fetch',
+            'required': False,
+        },
+        TransformationTypes.CHRONOS.value: {
+            'name': 'uris',
+            'required': False,
+        },
+        TransformationTypes.KUBERNETES.value: {
+            'name': None,
+            'required': False,
+        },
+    },
+
     # TODO create an entry for forcePullImage
     # TODO create an entry for healthChecks
     # TODO create an entry for replicas/instances
