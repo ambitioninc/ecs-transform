@@ -190,3 +190,9 @@ class SystemdTransformer(BaseTransformer):
 
     def emit_logging(self, logging):
         return logging
+
+    def ingest_ulimits(self, ulimits):
+        pass
+
+    def emit_ulimits(self, ulimits):
+        return ulimits

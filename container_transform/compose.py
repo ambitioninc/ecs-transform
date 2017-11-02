@@ -358,3 +358,9 @@ class ComposeTransformer(BaseTransformer):
 
     def emit_privileged(self, privileged):
         return privileged
+
+    def ingest_ulimits(self, ulimits):
+        return ulimits
+
+    def emit_ulimits(self, ulimits):
+        return ulimits

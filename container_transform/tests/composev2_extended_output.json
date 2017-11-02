@@ -8,12 +8,12 @@
             "essential": true,
             "image": "redis",
             "name": "redis",
-            "privileged": true,
             "portMappings": [
                 {
                     "containerPort": 6379
                 }
-            ]
+            ],
+            "privileged": true
         },
         {
             "dockerLabels": {
@@ -39,6 +39,20 @@
                 {
                     "containerPort": 5000,
                     "hostPort": 5000
+                }
+            ],
+            "ulimits": [
+                {
+                  "hardLimit": 65535,
+                  "name": "nproc",
+                  "softLimit": 65535
+
+                },
+                {
+                  "hardLimit": 40000,
+                  "name": "nofile",
+                  "softLimit": 20000
+
                 }
             ]
         },
