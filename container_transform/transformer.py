@@ -1,5 +1,6 @@
 import shlex
 from abc import ABCMeta, abstractmethod
+from future.utils import with_metaclass
 
 """The SCHEMA defines the argument format the .ingest_*() and .emit_*()
 methods should produce and accept (respectively)"""
@@ -35,7 +36,7 @@ SCHEMA = {
 }
 
 
-class BaseTransformer(object, metaclass=ABCMeta):
+class BaseTransformer(object, with_metaclass(ABCMeta)):
     """
     The base class for Transformer classes to inherit from.
 

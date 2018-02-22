@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+v1.1.6
+------
+
+* Added backwards compatibility for python 2.7 in BaseTransformer
+
 v1.1.5
 ------
 
