@@ -279,7 +279,7 @@ class MarathonTransformer(BaseTransformer):
             in port_mappings]
 
     def ingest_memory(self, memory):
-        return memory << 20
+        return int(memory) << 20
 
     def emit_memory(self, memory):
         mem_in_mb = memory >> 20
