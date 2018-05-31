@@ -8,3 +8,4 @@ RUN \
 
 WORKDIR /data
 ENTRYPOINT ["/usr/local/bin/container-transform"]
+CMD ['-h']
