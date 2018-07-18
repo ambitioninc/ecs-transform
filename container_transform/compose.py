@@ -4,6 +4,7 @@ from functools import reduce
 import yaml
 
 from .transformer import BaseTransformer
+from .utils import flatten
 
 
 class ComposeTransformer(BaseTransformer):
@@ -95,6 +96,55 @@ class ComposeTransformer(BaseTransformer):
         }
         mapping = str(mapping).rstrip('/udp')
         parts = str(mapping).split(':')
+        is_port_range = '-' in mapping
+
+        if is_port_range:
+          output = []
+
+          # 6060-6061
+          if len(parts) == 1:
+            single_range = str(mapping).split('-')
+
+            for port in single_range:
+              output.append({
+                  'protocol': protocol,
+                  'host_port': int(port),
+                  'container_port': int(port),
+              })
+
+            return output
+
+          elif len(parts) == 2:
+            # 9090-9091:8080-8081
+            if '-' in parts[0] and '-' in parts[1]:
+              first_range = str(parts[0]).split('-')
+              second_range = str(parts[1]).split('-')
+
+              first_range = list(map(int, first_range))
+              second_range = list(map(int, second_range))
+
+              for host, container in zip(first_range, second_range):
+                output.append({
+                    'protocol': protocol,
+                    'host_port': host,
+                    'container_port': container,
+                })
+
+              return output
+
+            # 12400-12500:1240
+            elif '-' in parts[0]:
+              single_range = str(parts[0]).split('-')
+
+              for port in range(int(single_range[0]), int(single_range[1]) + 1):
+                output.append({
+                    'protocol': protocol,
+                    'host_port': int(port),
+                    'container_port': int(parts[1]),
+                })
+
+              return output
+
         if len(parts) == 1:
             output.update({
                 'container_port': int(parts[0])
@@ -135,7 +185,9 @@ class ComposeTransformer(BaseTransformer):
         :return: the base schema port_mappings
         :rtype: list of dict
         """
-        return [self._parse_port_mapping(mapping) for mapping in port_mappings]
+        mappings = [self._parse_port_mapping(mapping) for mapping in port_mappings]
+
+        return flatten(mappings)
 
     @staticmethod
     def _emit_mapping(mapping):
