@@ -1,8 +1,8 @@
 # web.service #######################################################################
 [Unit]
 Description=Web
-After=docker.service 
-Requires=docker.service 
+After=docker.service
+Requires=docker.service
 
 [Service]
 ExecStartPre=-/usr/bin/docker kill web
@@ -13,6 +13,12 @@ ExecStart=/usr/bin/docker run \
     --pid host \
     -p 5000:5000 \
     -p 53:53/udp \
+    -p 3000:3000 \
+    -p 3001:3001 \
+    -p 9090:8080 \
+    -p 9091:8081 \
+    -p 9092:8082 \
+    -p 9093:8082 \
     -v .:/code \
     --log-driver=gelf \
     --log-opt gelf-address=udp://127.0.0.1:12900 \
@@ -20,5 +26,5 @@ ExecStart=/usr/bin/docker run \
     --label com.example.department="Finance" \
     --label com.example.description="Accounting webapp" \
     --label com.example.label-with-empty-value="" \
-    <image> 
+    <image>
 ExecStop=/usr/bin/docker stop web
