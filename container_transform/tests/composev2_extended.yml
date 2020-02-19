@@ -9,6 +9,7 @@ services:
     labels:
       com.example.name: "web"
       com.example.emptyvalue: ""
+    depends_on: [redis]
     logging:
       driver: gelf
       options:
