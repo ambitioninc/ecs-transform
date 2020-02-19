@@ -358,3 +358,6 @@ class ComposeTransformer(BaseTransformer):
 
     def emit_privileged(self, privileged):
         return privileged
+
+    def ingest_depends_on(self, depends_on):
+        return depends_on

@@ -731,6 +731,32 @@ ARG_MAP = OrderedDict({
             'required': False,
         },
     },
+    'depends_on': {
+        TransformationTypes.ECS.value: {
+            'name': 'dependsOn',
+            'required': False,
+        },
+        TransformationTypes.COMPOSE.value: {
+            'name': 'depends_on',
+            'required': False,
+        },
+        TransformationTypes.SYSTEMD.value: {
+            'name': None,
+            'required': False,
+        },
+        TransformationTypes.MARATHON.value: {
+            'name': None,
+            'required': False,
+        },
+        TransformationTypes.CHRONOS.value: {
+            'name': None,
+            'required': False,
+        },
+        TransformationTypes.KUBERNETES.value: {
+            'name': None,
+            'required': False,
+        },
+    }
     # TODO create an entry for forcePullImage
     # TODO create an entry for healthChecks
     # TODO create an entry for replicas/instances

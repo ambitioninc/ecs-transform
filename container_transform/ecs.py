@@ -293,3 +293,6 @@ class ECSTransformer(BaseTransformer):
             data['logDriver'] = data.get('driver')
             del data['driver']
         return logging
+
+    def emit_depends_on(self, deps):
+        return [{"containerName": name, "condition": "START"} for name in deps]
