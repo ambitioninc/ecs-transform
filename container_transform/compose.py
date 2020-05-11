@@ -94,6 +94,7 @@ class ComposeTransformer(BaseTransformer):
             'protocol': protocol
         }
         mapping = str(mapping).rstrip('/udp')
+        mapping = str(mapping).rstrip('/tcp')
         parts = str(mapping).split(':')
         if len(parts) == 1:
             output.update({
